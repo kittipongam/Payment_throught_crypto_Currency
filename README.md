@@ -2,6 +2,7 @@
 
 ## Introduction
 
+![image](https://user-images.githubusercontent.com/104770048/169694827-d855167c-7942-491d-bbf9-9df3b2b6bc1f.png)
 
 ## Ethereum Project Directory:
 >
@@ -101,6 +102,6 @@
 
 >
 
-![image](https://user-images.githubusercontent.com/104770048/169694827-d855167c-7942-491d-bbf9-9df3b2b6bc1f.png)
+
 
 
