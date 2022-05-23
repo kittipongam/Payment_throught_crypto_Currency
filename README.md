@@ -1,30 +1,34 @@
-# Payment_throught_crypto_Currency
+# Payment_throught_crypto_Currency(Ethereum Project:)
 
-Ethereum Project:
+## Introduction
+
+
+## Ethereum Project Directory:
 >
-    '-- web-20 <br>
-     '-- web.js
+    '-- Cryptocurrency 
+     '-- Server.js
      '-- public 
-         '-- member.html 
+         '-- Display.html 
 >
 
+## Create folder thought Windows command
 >
-    mkdir web-20
-    cd web-20
-    npm install express
+    mkdir cryptocurrency
+    cd cryptocurrency
+    npm install express  // install express module
 >
 
 
-FILE: web.js
+## Create simple server using Node.js File:Server.js
 
 >
     var express = require("express")
     var server  = express() // createServer()
     server.listen(20000)
-    server.use( express.static("public") )
+    server.use( express.static("public") )  // looking for directory name : "public"
 >
 
-FILE: public/member.html
+## Create simple web application File:public/Display.html
 
 >
     <!DOCTYPE html>
@@ -35,7 +39,10 @@ FILE: public/member.html
         <br>
         <button onclick="apply(0.1)">Gold</button>
         <button onclick="apply(0.05)">Silver</button>
-
+        <button onclick="refresh()">Refresh</button>
+        <div id="target">...</div>
+        <div id="showValueBuy">...</div>
+        <div id="showValueSell">...</div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script>
         <script>
           var accounts = [ ]
@@ -62,10 +69,36 @@ FILE: public/member.html
               alert("Fail to apply membership")
             }
           }
+         async function refresh(){
+         result =[]
+         var url= "https://api.coinbase.com/v2/prices/BTC-USD"
+
+         await fetch(url+"/buy").then(convert).then(show)
+         await fetch(url+"/sell").then(convert).then(show)
+
+          }
+          function convert(response){
+            return response.json()
+          }
+          function show(data){
+         result.push(data)
+         if (result.length==2){
+         var spread = result[0].data.amount - result[1].data.amount
+         //if (spread<0) spread= -spread
+         var e = document.getElementById("target")
+         var f = document.getElementById("showValueBuy")
+         var g = document.getElementById("showValueSell")
+         e.innerText ="Spread is " + spread.toFixed(2)
+         f.innerText ="Buy price = " + result[0].data.amount
+         g.innerText ="Sell price = " + result[1].data.amount
+         }
+       }
+
         </script>
 
       </body>
     </html>
+
 >
 
 ![image](https://user-images.githubusercontent.com/104770048/169694827-d855167c-7942-491d-bbf9-9df3b2b6bc1f.png)
