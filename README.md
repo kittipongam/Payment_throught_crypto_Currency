@@ -49,18 +49,22 @@
           var accounts = [ ]
 
           async function apply(value) {
-            if (typeof ethereum == 'undefined') {
-              alert("Please install MetaMask")
+            if (typeof ethereum == 'undefined') {     //check that you have provider(metamask/brave or note)
+              alert("Please install MetaMask")        //if not alert please install provider
               return  // end of this function
             }
             accounts = await ethereum.request({method:"eth_requestAccounts"})
             await pay(value)
           }
+            
+>      
+  
+>  
           async function pay(value) {
             var w = new Web3(ethereum)
             var detail = { from: accounts[0],
                            to:   "0x463eee5756231F693D98d7Bf4D9AF6584FECCC9D",
-                           value: w.utils.toWei("" + value) }
+                           value: w.utils.toWei("" + value) }  // convery value to wei(1ther = 10 the power of 18) unit
             var result = await w.eth.sendTransaction(detail)
             // check if result is passed
             if (result.status) {
@@ -70,6 +74,10 @@
               alert("Fail to apply membership")
             }
           }
+            
+>      
+  // fetch command for webservice to get value from coinbase
+> 
          async function refresh(){
          result =[]
          var url= "https://api.coinbase.com/v2/prices/BTC-USD"
@@ -94,7 +102,6 @@
          g.innerText ="Sell price = " + result[1].data.amount
          }
        }
-
         </script>
 
       </body>
